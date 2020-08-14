@@ -1,0 +1,19 @@
+---
+# tasks file for temboard
+
+- name: Install temboard and its dependencies
+  pip:
+    name:
+      - temboard
+      - psycopg2-binary
+
+- name: Configure the temboard service
+  command: /usr/local/share/temboard/auto_configure.sh
+  environment:
+    PGPORT: "{{ temboard_repository_pgport }}"
+
+- name: Enable and start the temboard service
+  systemd:
+    name: temboard
+    state: started
+    enabled: yes
