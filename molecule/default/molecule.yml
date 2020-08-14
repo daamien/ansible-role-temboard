@@ -14,4 +14,6 @@ platforms:
 provisioner:
   name: ansible
 verifier:
-  name: ansible
+  name: goss
+  lint:
+    name: yamllint
